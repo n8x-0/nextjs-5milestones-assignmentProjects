@@ -1,62 +1,80 @@
-// "use client";
-// import { useEffect, useState } from "react";
-// import ProductCard from "@/components/productCard";
-// import Link from "next/link";
+"use client";
 
-// const Cart = () => {
-//     const [cart, setCart] = useState<string[]>([]);
-//     const [cartData, setCartData] = useState<Prod[]>([]);
-//     const getCartdata = async () => {
-//         try {
-//             const res = await fetch("api/addtocart", { method: "GET" });
-//             const json = await res.json();
+import { useEffect, useState } from "react";
+import ProductCard from "@/components/productCard";
+import { Prod } from "@/utils/addTocart";
+import Link from "next/link";
 
-//             if (res.ok) {
-//                 setCart(json.cart)
-//                 cart.forEach((data) => {
-//                     const showCartData = products.filter((id) => id.price === data)
-//                     setCartData(showCartData)
-//                 })
-//             }
+const Cart = () => {
+    const [cart, setCart] = useState<Prod[]>([]);
 
-//         } catch (err) {
-//             console.log("error getting cart data");
-//         }
-//     }
+    const removeFromCart = (id: number) => {
+        let lclStorageCart: any = localStorage.getItem("cartData");
+        let storedCart = JSON.parse(lclStorageCart);
 
-//     useEffect(() => {
-//         getCartdata();
-//     }, [])
+        const filteredItem = storedCart.filter((data: Prod) => data.id !== id);
+        console.log(filteredItem);
+        setCart(filteredItem);
+        storedCart = filteredItem;
+        localStorage.setItem("cartData", JSON.stringify(storedCart));
+    }
 
-//     return (
-//         cartData.map((data, index)=> {
-//             return (
-//                 <div key={index}>
-//                   <ProductCard>
-//                     <div className="sm:w-full sm:h-32 h-20 bg-black w-[30%] overflow-hidden">
-//                       <img src={data.prodImage} alt="" className="w-full h-full object-cover" />
-//                     </div>
-//                     <div className="sm:p-2 sm:block flex sm:ml-0 ml-1 items-center relative sm:w-full w-[70%]">
-//                       <div>
-//                         <div className="leading-4 sm:my-2 my-1 w-fit">
-//                           <h2 className="font-bold">{data.prodName}<span className="text-green-700 ml-1">{data.price}$</span></h2>
-//                           <h3 className="text-xs">{data.sellerName}<span className="ml-1">{data.sellerLoc}</span></h3>
-//                         </div>
-//                         <p className="sm:text-sm text-[12px] leading-4 mt-1 h-[34px] overflow-hidden relative w-fit">
-//                           {data.prodDetails}
-//                           <span className="w-full h-1/2 absolute bottom-0 left-0 bg-gradient-to-t sm:from-slate-300 from-white to-transparent"></span>
-//                         </p>
-//                       </div>
-//                       <Link href={`product/${data.id}`} className="text-blue-600 text-sm sm:block hidden">Read more...</Link>
-//                       <div className="mt-2 gap-1 sm:flex hidden">
-//                         <button className="px-3 py-1 bg-blue-600 text-white font-medium rounded-sm text-sm cursor-not-allowed">Order</button>
-//                       </div>
-//                     </div>
-//                   </ProductCard>
-//                 </div>
-//               )
-//         })
-//     )
-// }
+    useEffect(() => {
+        let lclStorageCart: any = localStorage.getItem("cartData");
+        let storedCart = JSON.parse(lclStorageCart)
 
-// export default Cart
+        if (storedCart) {
+            setCart(storedCart)
+        }
+    }, [])
+
+    return (
+        <div className="flex flex-col justify-center items-center text-slate-800 w-full h-full">
+            <div className="products sm:pt-6 mt-20 xl:w-[80%] w-full h-full sm:flex flex-wrap sm:gap-x-4 sm:gap-y-4 justify-center">
+                {cart.length > 0 ?
+                    cart.map((data: Prod) => {
+                        return (
+                            <div key={data.id}>
+                                <ProductCard>
+                                    <div className="sm:w-full sm:h-32 h-20 bg-black w-[30%] overflow-hidden">
+                                        <img src={data.image} alt="" className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="sm:p-2 sm:block flex sm:ml-0 ml-1 items-center relative sm:w-full w-[70%]">
+                                        <Link href={`product/${data.id}`}>
+                                            <div>
+                                                <div className="leading-4 sm:mb-2 sm:my-0 my-1 w-fit">
+                                                    <h2 className="font-bold whitespace-nowrap overflow-hidden text-ellipsis relative w-60 sm:text-md text-sm">{data.title}
+                                                        <span className="w-12 h-full bg-gradient-to-l sm:from-slate-300 from-white to-transparent absolute top-0 right-0"></span>
+                                                    </h2>
+                                                    <span className="text-green-700 font-bold">{data.price}$</span>
+                                                    <h3 className="text-xs">Rating: <span className="text-yellow-600">{data.rating.rate}</span></h3>
+                                                </div>
+                                                <p className="text-[12px] leading-3 h-[34px] overflow-hidden relative w-fit">
+                                                    {data.description}
+                                                    <span className="w-full h-1/2 absolute bottom-0 left-0 bg-gradient-to-t sm:from-slate-300 from-white to-transparent"></span>
+                                                </p>
+                                            </div>
+                                        </Link>
+                                        <Link href={`product/${data.id}`} className="text-blue-600 text-sm sm:block hidden">Read more...</Link>
+                                        <div className="mt-1 gap-1 sm:flex hidden">
+                                            <button className="px-3 py-1 bg-blue-600 text-white font-medium rounded-sm text-sm cursor-not-allowed">Order</button>
+                                            <button className="px-3 py-1 bg-blue-600 text-white font-medium rounded-sm text-sm" onClick={() => removeFromCart(data.id)}>Remove</button>
+                                        </div>
+                                        <div onClick={() => removeFromCart(data.id)} className="bg-zinc-300 text-white flex sm:hidden justify-center items-center w-8 h-8 absolute top-0 right-0 rounded-full mr-2 mt-1 cursor-pointer">
+                                            d
+                                        </div>
+                                    </div>
+                                </ProductCard>
+                            </div>
+                        )
+                    })
+                    :
+                    <div className="w-full h-[50vh] flex justify-center items-center font-medium">
+                        <h1 className="animate-bounce tracking-tighter text-sm">your cart is empty</h1>
+                    </div>}
+            </div>
+        </div>
+    )
+}
+
+export default Cart

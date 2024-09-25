@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.fadeOut{
+    animation: fadeOut 1.6s ease-out;
+}
+
+@keyframes fadeOut {
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
