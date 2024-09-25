@@ -10,8 +10,8 @@ export interface Prod {
 let newData: Prod[] = [];
 
 export const addToCart = async (cartData: Prod) => {
-    let lclStorageCart: any = localStorage.getItem("cartData");
-    let storedCart = JSON.parse(lclStorageCart)
+    const lclStorageCart = localStorage.getItem("cartData");
+    const storedCart = lclStorageCart ? JSON.parse(lclStorageCart) : [];
     if (storedCart) {
         const existingCart = storedCart.find((data: Prod) => data.id === cartData.id);
         if (existingCart) return {error: "Already in your cart"};

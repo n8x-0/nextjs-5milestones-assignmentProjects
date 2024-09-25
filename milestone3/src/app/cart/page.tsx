@@ -9,8 +9,8 @@ const Cart = () => {
     const [cart, setCart] = useState<Prod[]>([]);
 
     const removeFromCart = (id: number) => {
-        let lclStorageCart: any = localStorage.getItem("cartData");
-        let storedCart = JSON.parse(lclStorageCart);
+        const lclStorageCart = localStorage.getItem("cartData");
+        let storedCart = lclStorageCart ? JSON.parse(lclStorageCart) : [];
 
         const filteredItem = storedCart.filter((data: Prod) => data.id !== id);
         console.log(filteredItem);
@@ -20,8 +20,8 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        let lclStorageCart: any = localStorage.getItem("cartData");
-        let storedCart = JSON.parse(lclStorageCart)
+        const lclStorageCart = localStorage.getItem("cartData");
+        const storedCart = lclStorageCart ? JSON.parse(lclStorageCart) : [];
 
         if (storedCart) {
             setCart(storedCart)

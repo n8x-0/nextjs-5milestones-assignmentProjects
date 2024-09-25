@@ -54,8 +54,8 @@ export default function Home() {
             <ul className="w-fit flex sm:gap-3 gap-1 flex-wrap">
               <li onClick={() => setCategory('')} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">All</li>
               <li onClick={() => setCategory('jewelery')} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Jewelry</li>
-              <li onClick={() => setCategory(`men's clothing`)} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Men's Clothing</li>
-              <li onClick={() => setCategory(`women's clothing`)} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Women's Clothing</li>
+              <li onClick={() => setCategory(`men's clothing`)} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Men&apos;s Clothing</li>
+              <li onClick={() => setCategory(`women's clothing`)} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Women&apos;s Clothing</li>
               <li onClick={() => setCategory('electronics')} className="px-4 py-1 rounded-full bg-slate-300 shadow-md sm:text-sm text-xs text-slate-600 font-medium cursor-pointer">Electronics</li>
             </ul>
           </div>
@@ -81,7 +81,7 @@ export default function Home() {
                               </h2>
                               <span className="text-green-700 font-bold">{data.price}$</span>
                               <h3 className="text-xs">
-                                Rating: <span className="text-yellow-600">{data.rating.rate}</span>
+                                Rating:&nbsp;<span className="text-yellow-600">{data.rating.rate}</span>
                               </h3>
                             </div>
                             <p className="text-[12px] leading-3 h-[34px] overflow-hidden relative w-fit">
