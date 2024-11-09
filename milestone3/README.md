@@ -1,6 +1,6 @@
 <h1><a href="">Click here to visit</a></h1>
 
-# Milestone 2: Front-end and nextJS components
+# Milestone 3: Front-end and nextJS components
 
 <b>Objective</b>: Dive deeper into React and NextJs components, focusing on state management, props and routing
 

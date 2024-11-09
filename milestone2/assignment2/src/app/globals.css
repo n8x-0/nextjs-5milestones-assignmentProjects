@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: geist;
+  src: url(./fonts/GeistVF.woff);
+}
+@font-face {
+  font-family: geistMono;
+  src: url(./fonts/GeistMonoVF.woff);
+}
+.shd{
+  text-shadow: -2px 6px 3px rgb(98, 64, 105);
+}
+.scaleAnim{
+  animation: scale 2.5s infinite;
+}
+
+@keyframes scale {
+  0%{
+    transform: scale(1);
+  }50%{
+    transform: scale(0.99);
+  }100%{
+    transform: scale(1);
+  }
+}
