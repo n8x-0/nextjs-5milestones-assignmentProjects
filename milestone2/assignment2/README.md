@@ -1,6 +1,6 @@
-<h1><a href="https://nextjs-5milestones-m2-portfolio.vercel.app/">Click here to visit</a></h1>
+<h1><a href="https://m2-multipage-tailwindcss.vercel.app/">Click here to visit</a></h1>
 
-# Milestone 2: Basic UI design, Custom & tailwind CSS
+# Milestone 2 assignment 2: Basic UI design, Using tailwind CSS
 
 <b>Objective</b>: Learn the basics of UI design with React Components and implement styling using custom CSS and tailwind CSS
 
