@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "swiper/swiper-bundle.css"
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import Header from "@/components/header/header";
+import Footer from "@/components/footer";
+import NavBar from "@/components/header/menuButton";
+// import SignIn from "@/components/sign-in";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,7 +35,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* <SignIn /> */}
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

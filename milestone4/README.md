@@ -1,6 +1,8 @@
-<h1><a href="">Click here to visit</a></h1>
+<!-- <h1><a href="">Click here to visit</a></h1> -->
 
 # Milestone 4: Advanced concepts in nextJS
+
+<b>Raised an issue in the project</b>
 
 <b>Objective</b>: Explore more advanced topics in nextJS, such as server side rendering, API integration and authentication.
 
