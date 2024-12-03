@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link";
 import { IoAddOutline } from "react-icons/io5";
-import UploadImageButtonWithProvider from "@/components/dashobard/provider";
+import UploadImageButton from "@/components/dashobard/uploadImageButton";
 import getUser from "@/lib/getUser";
 
 const Dashboard = async () => {
@@ -16,7 +16,7 @@ const Dashboard = async () => {
           <div className="sm:gap-6 gap-3 flex items-center">
             <div className="imgCont sm:w-20 sm:h-20 w-12 h-12 overflow-hidden relative">
               <Image src={image} alt={'profileImage'} fill className="w-full h-full object-cover rounded-full" />
-              <UploadImageButtonWithProvider />
+              <UploadImageButton />
             </div>
             <div className="sm:leading-none leading-[0.10rem]">
               <p className="font-medium sm:text-3xl text-xl">{name}</p>
@@ -26,7 +26,7 @@ const Dashboard = async () => {
           <div className="flex items-center sm:gap-10 gap-4">
             <div className="text-center sm:text-lg text-sm">
               <p className="font-medium">Posts</p>
-              <span className="font-medium">{posts.length}</span>
+              <span className="font-medium">{posts ? posts.length : 0}</span>
             </div>
             <div className="text-center sm:text-lg text-sm">
               <p className="font-medium">Followers</p>
@@ -57,7 +57,7 @@ const Dashboard = async () => {
         </div>
 
         <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center">
-          {posts.length > 0 && posts.map((data: {_id: string, image: string, title: string, content: string, category: string}, index: number) => {            
+          {posts && posts.length > 0 && posts.map((data: {_id: string, image: string, title: string, content: string, category: string}, index: number) => {            
             return (
               <Link href={`articles/${data._id}`} key={index}>
                 <div className='sm:w-[400px] h-20 w-full flex gap-3 scaler'>
@@ -80,7 +80,6 @@ const Dashboard = async () => {
       </div>
     </div>
   )
-  return <></>
 }
 
 export default Dashboard
