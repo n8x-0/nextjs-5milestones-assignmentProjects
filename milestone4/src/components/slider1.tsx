@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
+// import Link from "next/link"
 import { MdArrowOutward } from "react-icons/md"
 
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -47,9 +47,9 @@ const slider = ({ arr }: { arr: Props[] }) => {
                                     <span className="font-[sauda] font-semibold sm:text-5xl text-2xl leading-5 sm:px-4 px-3 bg-white sm:py-3 py-2 inline-block md:w-[400px] w-60 text-left rounded-2xl rounded-tl-none">{data.text}</span>
                                 </div>
                             </div>
-                            <Link href={`/articles/${data.id}`}>
+                            {/* <Link href={`/articles/${data.id}`}> */}
                                 <div className="absolute bottom-0 right-0 md:m-6 m-3 bg-white rounded-full sm:p-4 font-bold p-3 shadow-md scaler"><MdArrowOutward /></div>
-                            </Link>
+                            {/* </Link> */}
                         </SwiperSlide>
                     )
                 })}

@@ -5,7 +5,7 @@ import { Autoplay, EffectCoverflow } from 'swiper/modules';
 import { myBlogs } from '@/utils/blog-data';
 import Image from 'next/image';
 import { MdArrowOutward } from 'react-icons/md';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 const slider2 = () => {
     return (
@@ -54,7 +54,7 @@ const slider2 = () => {
             {myBlogs.map((data, index) => {
                 return (
                     <SwiperSlide key={index}>
-                        <Link href={`/articles/${data.id}`}>
+                        {/* <Link href={`/articles/${data.id}`}> */}
                             <div className='w-full h-64 overflow-hidden relative rounded-3xl shadow-md cursor-pointer'>
                                 <div className="absolute top-0 right-0 md:m-6 m-3 bg-white rounded-full p-3 shadow-md scaler">
                                     <MdArrowOutward />
@@ -65,7 +65,7 @@ const slider2 = () => {
                             <h1 className='md:text-3xl text-xl font-medium leading-6 tracking-tighter'>
                                 {data.text}
                             </h1>
-                        </Link>
+                        {/* </Link> */}
                     </SwiperSlide>
                 );
             })}
