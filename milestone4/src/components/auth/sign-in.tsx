@@ -1,6 +1,4 @@
 import { signIn } from "@/auth"
-import { createUser } from "@/utils/createUser"
-import { auth } from "@/auth"
 
 const signInAndCreateUser = async () => {
   "use server"

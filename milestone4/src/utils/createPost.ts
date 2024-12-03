@@ -1,10 +1,21 @@
 "use server"
-export async function createPost(data: {formData: FormData, category: string, imageUrl: string}){
-    const {formData, category, imageUrl} = data;
-    const title = formData.get("title")
-    const content = formData.get("content")
 
-    const postData = {title, content, category, imageUrl}
+import { auth } from "@/auth";
 
-    
+export async function createPost(formData: FormData) {
+    const session = await auth();
+    const id = session?.user?.id
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/post?id=${id}`, {
+            method: "POST",
+            body: formData,
+        })
+        
+        if (!res.ok) {
+            throw new Error("Something went wrong")
+        }
+        return
+    } catch (err) {
+        throw new Error(err as string)
+    }
 }

@@ -1,4 +1,4 @@
-import mongoose, {Schema, models, model, ObjectId} from 'mongoose';
+import { Schema, models, model, ObjectId } from 'mongoose';
 
 export interface UserModelInterface {
   name: string,
@@ -8,31 +8,17 @@ export interface UserModelInterface {
 }
 
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    image: {
-      type: String,
-      default: '',
-    },
+    name: { type: String },
+    email: { type: String, unique: true },
+    image: { type: String, default: 'https://www.ieeta.pt/wp-content/uploads/2022/11/default_image_ieeta.jpg' },
+    password: { type: String, select: false },
     posts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Chat',
-      },
+      { type: Schema.Types.ObjectId, ref: 'Post' },
     ],
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true, }
 );
 
 export const UserModel = models.User || model('User', userSchema);

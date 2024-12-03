@@ -1,9 +1,17 @@
-import { myBlogs } from '@/utils/blog-data';
 import Image from 'next/image';
 import Link from 'next/link';
 import Slider2 from '@/components/slider2';
 
-const Articles = () => {
+const Articles = async () => {
+
+  const getBlogs = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/allposts`, {
+      next: { revalidate: 5 }
+    });
+    return await res.json()
+  }
+  const myBlogs = await getBlogs()
+
   return (
     <div className='w-full min-h-screen bg-[#EFF2F9] pt-20'>
 
@@ -29,20 +37,23 @@ const Articles = () => {
         <hr className='w-1/2 border-[2px]' />
       </div>
 
-      <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center">
-        {myBlogs.map((data, index) => {
+      <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center min-h-60">
+        {myBlogs.map((data:
+          { _id: string, image: string, title: string, category: string, content: string, author: { name: string, email: string } }, index: number) => {
           return (
-            <Link href={`articles/${data.id}`} key={index}>
+            <Link href={`articles/${data._id}`} key={index}>
               <div className='sm:w-[400px] h-20 w-full flex gap-3 scaler'>
                 <div className='w-32 h-24  bg-black rounded-3xl overflow-hidden'>
                   <Image src={data.image} alt={data.image} width={800} height={800} className='w-full h-full object-cover' />
                 </div>
                 <div className='overflow-hidden'>
-                  <h1 className='font-medium leading-4 tracking-tighter mb-1 text-lg'>{data.text.slice(0, 30)}...</h1>
+                  <h1 className='font-medium leading-4 tracking-tighter mb-1 text-lg'>{data.title.slice(0, 30)}...</h1>
                   <h2 className='text-xs font-medium'>&bull; {data.category}</h2>
                   <span className='text-sm text-zinc-500 mt-1 inline-block'>
-                    {data.blog.slice(0, 30)}...
+                    {data.content.slice(0, 30)}...
                   </span>
+                  <h2 className='text-xs text-zinc-600'>author: {data.author.name}</h2>
+                  <span>{data.author.email}</span>
                 </div>
               </div>
             </Link>
