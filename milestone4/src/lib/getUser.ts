@@ -1,7 +1,6 @@
 "use server"
-import { auth } from '@/auth'
-export default async function getUser() {
-    const session = await auth()
+import { Session } from 'next-auth'
+export default async function getUser(session: Session) {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/user?id=${session?.user?.id}`, {
             method: "GET",

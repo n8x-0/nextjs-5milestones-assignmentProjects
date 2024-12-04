@@ -7,7 +7,7 @@ import { auth } from "@/auth";
 
 const Header = async () => {
     const session = await auth()
-    const user = session ? await getUser() : null
+    const user = session ? await getUser(session) : null
 
     return (
         <div className="w-full flex justify-between items-center md:px-14 sm:px-8 px-4 md:py-5 py-3 tracking-tighter absolute top-0 bg-white moveDown z-10 shadow-sm">
@@ -26,7 +26,7 @@ const Header = async () => {
                         :
                         <Link href={"/signup"}>Be A writer</Link>
                     }
-                    <li>Talk to us</li>
+                    <li className="cursor-not-allowed">Talk to us</li>
                 </ul>
             </div>
             <div className="flex items-center gap-2">

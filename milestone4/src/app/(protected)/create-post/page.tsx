@@ -1,13 +1,18 @@
 "use client"
 import Image from "next/image";
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { IoAddOutline } from "react-icons/io5"
 import { createPost } from "@/utils/createPost";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader";
+import { checkAuth } from "@/utils/protectCreatePost";
 
 
 const CreatePost = () => {
+
+  useEffect(()=> {
+    checkAuth()
+  }, [])
 
   const [category, setCategory] = useState<string | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -56,7 +61,7 @@ const CreatePost = () => {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#EFF2F9] flex justify-center relative">
+    <div className="w-full min-h-[80vh] bg-[#EFF2F9] flex justify-center relative">
       {loading && <Loader />}
       <div className="lg:w-1/2 w-full h-full p-3 my-auto">
         <h1 className="sm:text-7xl text-5xl font-semibold tracking-tight italic sm:pt-4">Create blog</h1>

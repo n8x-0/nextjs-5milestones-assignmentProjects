@@ -3,11 +3,14 @@ import Link from "next/link";
 import { IoAddOutline } from "react-icons/io5";
 import UploadImageButton from "@/components/dashobard/uploadImageButton";
 import getUser from "@/lib/getUser";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
 const Dashboard = async () => {
-  const user = await getUser()
-  const { posts, name, email, image } = user 
-  
+  const session = await auth()
+  const user = session ? await getUser(session) : redirect("/login")
+  const { posts, name, email, image } = user
+
   return (
     <div className="w-full min-h-screen bg-[#EFF2F9] pt-20">
       <div className="w-full h-full sm:p-10 p-3">
@@ -57,7 +60,7 @@ const Dashboard = async () => {
         </div>
 
         <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center">
-          {posts && posts.length > 0 && posts.map((data: {_id: string, image: string, title: string, content: string, category: string}, index: number) => {            
+          {posts && posts.length > 0 && posts.map((data: { _id: string, image: string, title: string, content: string, category: string }, index: number) => {
             return (
               <Link href={`articles/${data._id}`} key={index}>
                 <div className='sm:w-[400px] h-20 w-full flex gap-3 scaler'>
