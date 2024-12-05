@@ -47,14 +47,14 @@ export default async function Home() {
 
         <div className="w-full md:h-1/2 h-52 bg-[#B8D3D7] rounded-3xl md:p-6 p-3 relative scaler shadow-[#adb1b6] sm:shadow-lg shadow-md">
           <div className="flex justify-between items-center">
-            <div className="font-medium sm:text-base text-sm md:px-6 md:py-2 px-3 py-1 border-[1px] border-black w-fit rounded-full">&bull; ADS</div>
+            <div className="font-medium sm:text-base text-sm md:px-6 md:py-2 px-3 py-1 border-[1px] border-black w-fit rounded-full">&bull; Blog Spot</div>
             <div className="md:p-4 p-2 bg-white rounded-full w-fit">
               <HiOutlinePlus />
             </div>
           </div>
           <h2 className="font-medium leading-5 md:my-3 my-1 sm:text-xl text-sm">Become A <br /> BROADCASTMEMBER</h2>
-          <h1 className="font-[450] md:text-5xl sm:text-3xl text-xl tracking-tighter md:leading-9 leading-5 my-3">Real talk in a <br /> Corporate World</h1>
-          <span className="absolute bottom-0 right-0 sm:p-8 p-6 underline md:text-md text-sm font-medium cursor-pointer">Learn more</span>
+          <h1 className="font-[450] md:text-5xl sm:text-3xl text-xl tracking-tighter md:leading-9 leading-5 my-3">Be A writer and Start Creating Blogs now</h1>
+          <Link href="/dashboard" className="absolute bottom-0 right-0 sm:p-8 p-6 underline md:text-lg text-sm font-medium cursor-pointer">create post</Link>
         </div>
 
         <div className="w-full md:h-1/2 h-52 bg-black rounded-3xl overflow-hidden relative scaler flex justify-center items-end shadow-[#adb1b6] sm:shadow-lg shadow-md sm:mt-0 mt-2">

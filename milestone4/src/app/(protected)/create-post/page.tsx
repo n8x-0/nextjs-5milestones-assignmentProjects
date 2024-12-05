@@ -52,7 +52,7 @@ const CreatePost = () => {
         formData.append("category", category);
         setLoading(true);
         await createPost(formData).then(()=> setLoading(false))
-        router.push("/dashboard")
+        router.push("/articles")
       } catch (error) {
         setLoading(false)
         setError(`Error: ${error}`)

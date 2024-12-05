@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Slider2 from '@/components/slider2';
+import { AiFillLike } from 'react-icons/ai';
 
 const Articles = async () => {
 
@@ -39,10 +40,10 @@ const Articles = async () => {
 
       <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center min-h-60">
         {myBlogs.map((data:
-          { _id: string, image: string, title: string, category: string, content: string, author: { name: string, email: string } }, index: number) => {
+          { _id: string, image: string, title: string, category: string, content: string, likes: string[], author: { name: string, email: string } }, index: number) => {
           return (
             <Link href={`articles/${data._id}`} key={index}>
-              <div className='sm:w-[400px] h-20 w-full flex gap-3 scaler'>
+              <div className='sm:w-[400px] h-full w-full flex gap-3 scaler'>
                 <div className='w-32 h-24  bg-black rounded-3xl overflow-hidden'>
                   <Image src={data.image} alt={data.image} width={800} height={800} className='w-full h-full object-cover' />
                 </div>
@@ -52,8 +53,16 @@ const Articles = async () => {
                   <span className='text-sm text-zinc-500 mt-1 inline-block'>
                     {data.content.slice(0, 30)}...
                   </span>
-                  <h2 className='text-xs text-zinc-600'>author: {data.author.name}</h2>
-                  <span>{data.author.email}</span>
+                  <div className='text-xs text-zinc-600 flex justify-between items-center'>
+                    <div className='flex gap-1 items-center'>
+                      <span>author:</span>
+                      <span className='underline'>{data.author.name}</span>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                      <AiFillLike className="w-3 h-3" />
+                      <span>{data.likes.length}</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Link>

@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
 
     const user = await UserModel.findById(id)
     const post = await PostModel.create({
-      title, content, image: secure_url, category, author: { name: user.name, email: user.email, id: user._id }
+      title, content, image: secure_url, category, author: { name: user.name, email: user.email, image: user.image, id: user._id }
     })
     user.posts.push(post.id)
     user.save()
