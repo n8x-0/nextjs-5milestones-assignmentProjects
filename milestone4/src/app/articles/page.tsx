@@ -40,7 +40,7 @@ const Articles = async () => {
 
       <div className="cardsCont md:p-12 p-3 pt-10 flex flex-wrap sm:gap-12 gap-8 sm:justify-center min-h-60">
         {myBlogs.map((data:
-          { _id: string, image: string, title: string, category: string, content: string, likes: string[], author: { name: string, email: string } }, index: number) => {
+          { _id: string, image: string, title: string, category: string, content: string, likes: string[], author: { name: string, email: string, image: string } }, index: number) => {
           return (
             <Link href={`articles/${data._id}`} key={index}>
               <div className='sm:w-[400px] h-full w-full flex gap-3 scaler'>
@@ -56,6 +56,9 @@ const Articles = async () => {
                   <div className='text-xs text-zinc-600 flex justify-between items-center'>
                     <div className='flex gap-1 items-center'>
                       <span>author:</span>
+                      <span className='ml-1 w-4 h-4 rounded-full overflow-hidden ring-1 ring-zinc-500'>
+                        <Image src={data.author.image} alt={data.author.image} width={800} height={800} className='w-full h-full object-cover' />
+                      </span>
                       <span className='underline'>{data.author.name}</span>
                     </div>
                     <div className='flex items-center gap-1'>

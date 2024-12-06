@@ -26,12 +26,12 @@ const Deletepostbtn = (id: {id: string}) => {
     }
 
     return (
-        <div className="flex gap-3 justify-end relative md:absolute md:top-28 md:right-10">
-            <button className="bg-red-500 text-white shadow-md shadow-slate-300 px-4 py-2 rounded-lg mb-2 text-2xl" onClick={deletePost}>
-                <MdDelete />
+        <div className="flex gap-3 pt-3">
+            <button className="bg-red-500 text-white shadow-md shadow-slate-300 px-4 py-2 rounded-lg text-2xl flex gap-2" onClick={deletePost}>
+                <MdDelete /> <span className="text-base">Delete Post</span>
             </button>
-            <button className="bg-blue-500 text-white shadow-md shadow-slate-300 px-4 py-2 rounded-lg mb-2 text-2xl" onClick={()=> {}}>
-                <FaEdit />
+            <button className="bg-blue-500 text-white shadow-md shadow-slate-300 px-4 py-2 rounded-lg text-2xl flex gap-2 cursor-not-allowed" onClick={()=> {}}>
+                <FaEdit /> <span className="text-base">Edit Post</span>
             </button>
         </div>
     )

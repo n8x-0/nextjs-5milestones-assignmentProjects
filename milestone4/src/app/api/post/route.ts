@@ -128,3 +128,30 @@ export async function PATCH(request: NextRequest) {
 
   return NextResponse.json({ likes: post.likes.length }, { status: 200 })
 }
+
+export async function PUT(request: NextRequest) {
+  const data = await request.json();
+
+  console.log("comment route: ", data);
+  try {
+    await mongoDBconnection();
+  } catch (err) {
+    if (err) return NextResponse.json("ok", { status: 599 })
+  }
+
+  const user = await UserModel.findById(data.userId)
+  if (!user) return NextResponse.json({ error: "cant post comment, try login again" }, { status: 404 })
+
+  const post = await PostModel.findById(data.postId)
+  if (!post) return NextResponse.json({ error: "cant post comment" }, { status: 404 })
+
+  post.comments.push({
+    name: user.name,
+    image: user.image,
+    comment: data.comment,
+    id: user._id
+  })
+  post.save();
+
+  return NextResponse.json("ok", { status: 201 })
+}
