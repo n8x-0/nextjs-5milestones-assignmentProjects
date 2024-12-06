@@ -7,7 +7,7 @@ const Articles = async () => {
 
   const getBlogs = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_ROUTE}/api/allposts`, {
-      next: { revalidate: 5 }
+      cache: "no-store"
     });
     return await res.json()
   }
